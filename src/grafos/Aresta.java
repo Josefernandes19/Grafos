@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package grafos;
 
 /**
@@ -15,25 +14,25 @@ public class Aresta {
     private Vertice destino;
     private double peso;
     private double capacidade;
-    
-    public Aresta( Vertice origem, Vertice destino ){
+
+    public Aresta(Vertice origem, Vertice destino) {
         this.origem = origem;
         this.destino = destino;
         this.peso = 1;
     }
-    
-    public Aresta( Vertice origem, Vertice destino, double peso ){
+
+    public Aresta(Vertice origem, Vertice destino, double peso) {
         this.origem = origem;
         this.destino = destino;
         this.peso = peso;
     }
-    
-    public Aresta( Vertice origem, Vertice destino, double peso, double capacidade ){
+
+    public Aresta(Vertice origem, Vertice destino, double peso, double capacidade) {
         this.origem = origem;
         this.destino = destino;
         this.peso = peso;
         this.capacidade = capacidade;
-    }    
+    }
 
     public Vertice origem() {
         return origem;
@@ -66,5 +65,5 @@ public class Aresta {
     public void setarCapacidade(double capacidade) {
         this.capacidade = capacidade;
     }
-    
+
 }

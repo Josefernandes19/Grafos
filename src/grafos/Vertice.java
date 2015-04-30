@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package grafos;
 
 /**
@@ -10,9 +9,10 @@ package grafos;
  * @author humberto
  */
 public class Vertice {
+
     private int vertice;
-    
-    public Vertice( int v ){
+
+    public Vertice(int v) {
         this.vertice = v;
     }
 
@@ -23,5 +23,5 @@ public class Vertice {
     public void setarVertice(int vertice) {
         this.vertice = vertice;
     }
-    
+
 }

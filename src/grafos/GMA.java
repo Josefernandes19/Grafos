@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package grafos;
 
 import java.util.Collection;
@@ -11,7 +10,7 @@ import java.util.Collection;
  *
  * @author humberto
  */
-public class GMA implements Grafo{
+public class GMA implements Grafo {
 
     public void adicionarAresta(Vertice origem, Vertice destino) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
