@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class AlgoritmosGrafos implements AlgoritmosEmGrafos {
 
     public Grafo carregarGrafo(String path, TipoDeRepresentacao t) throws Exception, IOException, FileNotFoundException {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
         Grafo grafo = null;
 
         int numeroDeVertices;
@@ -47,8 +47,7 @@ public class AlgoritmosGrafos implements AlgoritmosEmGrafos {
             }
             read.nextLine();
             while (read.hasNextLine()) {
-                //494 495-1; 496-1; 497-1; 498-1; 499-1; 500-1; 
-                //495 496-1; 497-1; 498-1; 499-1; 500-1; 
+                
                 String linha = read.nextLine();
                 if (linha != "") {
                     String splitVert[] = linha.split(" ", 2);
@@ -61,7 +60,7 @@ public class AlgoritmosGrafos implements AlgoritmosEmGrafos {
 
                             int indVertDestino = Integer.parseInt(splitT[0]);
                             Vertice verticeDestino = new Vertice(indVertDestino);
-                            int peso = Integer.parseInt(splitT[1]);
+                            double peso = Double.parseDouble(splitT[1]);
                             grafo.adicionarAresta(verticeOrigem, verticeDestino, peso);
 
                         }

@@ -17,60 +17,59 @@ import java.util.List;
  */
 public class ListaAdjacencia implements Grafo {
 
-    List<List<Aresta>> vertices = new ArrayList<List<Aresta>>();
+    List<Aresta>[] vertices;
+
     int numVertices;
 
     public ListaAdjacencia(int numVertices) {
+        vertices = new LinkedList[numVertices];
         this.numVertices = numVertices;
         for (int i = 0; i < numVertices; i++) {
-            vertices.add(null);
-        }
-        for (List<Aresta> v : vertices) {
-            v = new ArrayList<Aresta>();
+            vertices[i] = new LinkedList<>();
         }
 
     }
 
+    @Override
     public void adicionarAresta(Vertice origem, Vertice destino) throws Exception {
-        vertices.get(origem.id()).add(new Aresta(origem, destino));
+        vertices[origem.id()].add(new Aresta(origem, destino));
     }
 
+    @Override
     public void adicionarAresta(Vertice origem, Vertice destino, double peso) throws Exception {
-        vertices.get(origem.id()).add(new Aresta(origem, destino, peso));
+        vertices[origem.id()].add(new Aresta(origem, destino, peso));
     }
 
+    @Override
     public boolean existeAresta(Vertice origem, Vertice destino) {
-        Aresta aresta = new Aresta(origem, destino);
-        List<Aresta> adjacentes = vertices.get(origem.id());
-        for (Aresta a : adjacentes) {
-            if (a == aresta) {
-                return true;
-            }
-        }
         return false;
     }
 
+    @Override
     public int grauDoVertice(Vertice vertice) throws Exception {
-        return vertices.get(vertice.id()).size();
+        return vertices[vertice.id()].size();
     }
 
+    @Override
     public int numeroDeVertices() {
-        return vertices.size();
+        return vertices.length;
     }
 
+    @Override
     public int numeroDeArestas() {
         int soma = 0;
-        for (int i = 0; i < vertices.size(); i++) {
-            soma += vertices.get(i).size();
+        for (int i = 0; i < vertices.length; i++) {
+            soma += vertices[i].size();
         }
         return soma;
     }
 
     public Collection<Vertice> adjacentesDe(Vertice vertice) throws Exception {
         Vertice[] vert;
-        vert = new Vertice[vertices.get(vertice.id()).size()];
-        for (int i = 0; i < vertices.get(vertice.id()).size(); i++) {
-            int dest = vertices.get(vertice.id()).get(i).destino().id();
+//        return vertice[vertice.id()];
+        vert = new Vertice[vertices[vertice.id()].size()];
+        for (int i = 0; i < vertices[vertice.id()].size(); i++) {
+            int dest = vertices[vertice.id()].get(i).destino().id();
             Vertice destino = new Vertice(dest);
             vert[i] = destino;
         }
@@ -79,48 +78,52 @@ public class ListaAdjacencia implements Grafo {
 
     }
 
+    @Override
     public void setarPeso(Vertice origem, Vertice destino, double peso) throws Exception {
-        if (!vertices.contains(origem)) {
+        if (vertices[origem.id()] == null) {
             throw new UnsupportedOperationException("Nao existe vertice de Origem"); //To change body of generated methods, choose Tools | Templates.
         }
         int ind = -1;
         Aresta compara = new Aresta(origem, destino);
-        for (int i = 0; i < vertices.get(origem.id()).size(); i++) {
-            if (compara == vertices.get(origem.id()).get(i)) {
+        for (int i = 0; i < vertices[origem.id()].size(); i++) {
+            if (compara == vertices[origem.id()].get(i)) {
                 ind = i;
             }
         }
         if (ind == -1) {
             throw new UnsupportedOperationException("Não existe essa Aresta"); //To change body of generated methods, choose Tools | Templates.
         } else {
-            vertices.get(origem.id()).get(ind).setarPeso(peso);
+            vertices[origem.id()].get(ind).setarPeso(peso);
         }
     }
 
+    @Override
     public void setarCapacidade(Vertice origem, Vertice destino, double capacidade) throws Exception {
-        if (origem.id() > vertices.size()) {
+        if (origem.id() > vertices.length) {
             System.out.println("Não existe esse vértice");
 
         } else {
             int ind = -1;
             Aresta compara = new Aresta(origem, destino);
-            for (int i = 0; i < vertices.get(origem.id()).size(); i++) {
-                if (compara == vertices.get(origem.id()).get(i)) {
+            for (int i = 0; i < vertices[origem.id()].size(); i++) {
+                if (compara == vertices[origem.id()].get(i)) {
                     ind = i;
                 }
             }
             if (ind == -1) {
                 throw new UnsupportedOperationException("Não existe essa Aresta"); //To change body of generated methods, choose Tools | Templates.
             } else {
-                vertices.get(origem.id()).get(ind).setarCapacidade(capacidade);
+                vertices[origem.id()].get(ind).setarCapacidade(capacidade);
             }
         }
     }
 
+    @Override
     public Collection<Aresta> arestasEntre(Vertice origem, Vertice destino) throws Exception {
         throw new UnsupportedOperationException("Não existe essa Aresta"); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public Collection<Vertice> vertices() {
         Vertice[] v = new Vertice[numeroDeVertices()];
         for (int i = 0; i < numeroDeVertices(); i++) {

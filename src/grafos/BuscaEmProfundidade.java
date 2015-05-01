@@ -78,7 +78,7 @@ public class BuscaEmProfundidade {
     public Collection<Aresta> ArestaDeRetorno() {
         Collection<Aresta> arestaDeRetorno = new LinkedList<>();
         for (Map.Entry<Aresta, TipoArvore> t : arvore.entrySet()) {
-            if (t.getValue() == TipoArvore.ARESTA_DE_ARVORE) {
+            if (t.getValue() == TipoArvore.ARESTA_DE_RETORNO) {
                 arestaDeRetorno.add(t.getKey());
             }
         }
